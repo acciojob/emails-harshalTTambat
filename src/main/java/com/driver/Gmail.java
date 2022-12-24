@@ -29,7 +29,7 @@ public class Gmail extends Email {
     public String findLatestMessage(){
         // If the inbox is empty, return null
         // Else, return the message of the latest mail present in the inbox
-
+//git
     }
 
     public String findOldestMessage(){
