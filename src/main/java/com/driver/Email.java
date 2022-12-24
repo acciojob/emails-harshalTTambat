@@ -28,39 +28,48 @@ public class Email {
 
         if (oldPassword.equals(getPassword()))
         {
-            if (newPassword.length() < 8)
-            {
-                System.out.println("Password must contains at least 8 characters");
-                return;
-            }
-            String upperCaseChars = "(.*[A-Z].*)";
-            if (!newPassword.matches(upperCaseChars))
-            {
-                System.out.println("Password must contains at least one uppercase letter");
-                return;
-            }
-            String lowerCaseChars = "(.*[a-z].*)";
-            if (!newPassword.matches(lowerCaseChars ))
-            {
-                System.out.println("Password must have at least one lowercase character");
-                return;
-            }
-            String numbers = "(.*[0-9].*)";
-            if (!newPassword.matches(numbers ))
-            {
-                System.out.println("Password must have at least one number");
-                return;
-            }
-            String specialChars = "(.*[@,#,$,%].*$)";
-            if (!newPassword.matches(specialChars ))
-            {
-                System.out.println("Password must have at least one special character among @#$%");
-                return;
-            }
-
+           if(isValidPassword(newPassword))
+           {
+               oldPassword = newPassword;
+           }
         }
         else {
             System.out.println("current password does not match...");
         }
+
+    }
+    public boolean isValidPassword(String password)
+    {
+        boolean isValid = true;
+        if (password.length() < 8)
+        {
+            System.out.println("Password must be less than 20 and more than 8 characters in length.");
+            isValid = false;
+        }
+        String upperCaseChars = "(.*[A-Z].*)";
+        if (!password.matches(upperCaseChars ))
+        {
+            System.out.println("Password must have at least one uppercase character");
+            isValid = false;
+        }
+        String lowerCaseChars = "(.*[a-z].*)";
+        if (!password.matches(lowerCaseChars ))
+        {
+            System.out.println("Password must have at least one lowercase character");
+            isValid = false;
+        }
+        String numbers = "(.*[0-9].*)";
+        if (!password.matches(numbers ))
+        {
+            System.out.println("Password must have atleast one number");
+            isValid = false;
+        }
+        String specialChars = "(.*[@,#,$,%].*$)";
+        if (!password.matches(specialChars ))
+        {
+            System.out.println("Password must have atleast one special character among @#$%");
+            isValid = false;
+        }
+        return isValid;
     }
 }
