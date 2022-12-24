@@ -23,11 +23,13 @@ public class Gmail extends Email {
         if(getInboxSize() >= getInboxCapacity())
         {
             String oldMail = findOldestMessage();
+            deleteMail(oldMail);
+            Email newMail = new Email(sender);
+            inboxSize++;
         }
         else{
             Email newMail = new Email(sender);
             inboxSize++;
-
         }
     }
 
