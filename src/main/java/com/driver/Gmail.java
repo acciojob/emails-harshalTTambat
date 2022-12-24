@@ -8,8 +8,11 @@ public class Gmail extends Email {
     int inboxCapacity; //maximum number of mails inbox can store
     //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
-    public Gmail(String emailId, int inboxCapacity) {
+    int inboxSize=0;
 
+    public Gmail(String emailId, int inboxCapacity) {
+        super(emailId);
+        this.inboxCapacity = inboxCapacity;
     }
 
     public void receiveMail(Date date, String sender, String message){
@@ -17,7 +20,15 @@ public class Gmail extends Email {
         // It is guaranteed that:
         // 1. Each mail in the inbox is distinct.
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
+        if(getInboxSize() >= getInboxCapacity())
+        {
+            String oldMail = findOldestMessage();
+        }
+        else{
+            Email newMail = new Email(sender);
+            inboxSize++;
 
+        }
     }
 
     public void deleteMail(String message){
@@ -35,6 +46,10 @@ public class Gmail extends Email {
     public String findOldestMessage(){
         // If the inbox is empty, return null
         // Else, return the message of the oldest mail present in the inbox
+        if(getInboxSize() == 0) return null;
+        else{
+
+        }
 
     }
 
@@ -46,7 +61,8 @@ public class Gmail extends Email {
 
     public int getInboxSize(){
         // Return number of mails in inbox
-
+      inboxSize = inboxSize + 1;
+      return inboxSize;
     }
 
     public int getTrashSize(){
@@ -61,5 +77,6 @@ public class Gmail extends Email {
 
     public int getInboxCapacity() {
         // Return the maximum number of mails that can be stored in the inbox
+        return inboxCapacity;
     }
 }
