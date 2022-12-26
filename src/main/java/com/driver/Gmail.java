@@ -42,7 +42,7 @@ public class Gmail extends Email {
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
        for(int i=0;i<this.Inbox.size();i++)
        {
-           if(message.equals(Inbox.get(i).massageData))
+           if(message.equals(this.Inbox.get(i).massageData))
            {
                this.Trash.add(Inbox.get(i));
                this.Inbox.remove(i);
@@ -54,7 +54,7 @@ public class Gmail extends Email {
         // Else, return the message of the latest mail present in the inbox
         if (this.Inbox.size() == 0) return null;
         else {
-            return this.Inbox.get(Inbox.size() - 1).massageData;
+            return this.Inbox.get(this.Inbox.size() - 1).massageData;
         }
     }
     public String findOldestMessage(){
